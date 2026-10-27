@@ -11,7 +11,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 svg{width:22px;height:22px;display:block}
 #sp{position:fixed;inset:0;z-index:90;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:opacity .4s}
 #sp.out{opacity:0;pointer-events:none}
-.lg{width:84px;height:84px;border-radius:28px;background:linear-gradient(145deg,var(--ac),#b06bff);color:#fff;display:grid;place-items:center;box-shadow:0 14px 40px rgba(109,94,252,.4)}
+.lg{width:84px;height:84px;border-radius:28px;background:linear-gradient(145deg,#5b4cf5,#a855f7 55%,#ec4899);color:#fff;display:grid;place-items:center;box-shadow:0 14px 40px rgba(109,94,252,.4)}
 .lg svg{width:40px;height:40px}
 #sp h1{margin:0;font-size:26px;letter-spacing:-.5px}
 .ld{width:90px;height:4px;border-radius:2px;background:var(--ln);overflow:hidden}
@@ -121,10 +121,10 @@ input[type=range]{width:100%;accent-color:var(--ac);margin:4px 0 6px}
 .c{width:34px;height:34px}
 #sel{display:none;position:absolute;z-index:6;border:calc(var(--z,1)*2px) solid var(--ac);border-radius:4px;background:rgba(109,94,252,.07)}
 .hh{position:absolute;width:30px;height:30px;border-radius:50%;background:var(--ac);color:#fff;display:grid;place-items:center;font-style:normal;font-size:17px;box-shadow:0 2px 8px rgba(0,0,0,.3);border:2px solid #fff}
-.hr{left:50%;top:0;transform:translate(-50%,calc(var(--z,1)*-40px - 50%)) scale(var(--z,1))}
-.hs{right:0;bottom:0;transform:translate(50%,50%) scale(var(--z,1))}
-.hx{right:0;top:0;transform:translate(50%,-50%) scale(var(--z,1));background:#e11d48}
-.hk{left:0;top:0;transform:translate(-50%,-50%) scale(var(--z,1));display:none}
+.hr{left:50%;top:0;transform:translate(-50%,calc(var(--z,1)*-40px - 50%)) scale(var(--z,1)) rotate(calc(var(--r,0rad)*-1))}
+.hs{right:0;bottom:0;transform:translate(50%,50%) scale(var(--z,1)) rotate(calc(var(--r,0rad)*-1))}
+.hx{right:0;top:0;transform:translate(50%,-50%) scale(var(--z,1)) rotate(calc(var(--r,0rad)*-1));background:#e11d48}
+.hk{left:0;top:0;transform:translate(-50%,-50%) scale(var(--z,1)) rotate(calc(var(--r,0rad)*-1));display:none}
 .hp{position:absolute;left:50%;top:100%;transform:translate(-50%,calc(var(--z,1)*12px)) scale(var(--z,1));transform-origin:50% 0;background:var(--ac);color:#fff;padding:7px 18px;border-radius:16px;font-size:14px;white-space:nowrap;display:none}
 #sel[data-k=fl] .hk{display:grid}
 #sel[data-k=file] .hp{display:block}
@@ -178,6 +178,11 @@ input[type=range]{width:100%;accent-color:var(--ac);margin:4px 0 6px}
 :root[data-g="2"] :is(.tb.on,.pri,.seg .on){background:linear-gradient(180deg,color-mix(in srgb,var(--ac) 72%,#fff),var(--ac));box-shadow:inset 0 1.5px 0 rgba(255,255,255,.7),0 4px 14px color-mix(in srgb,var(--ac) 50%,transparent)}
 :root[data-g="2"] :is(.slot,.fc,.in,.ni.on){border:1px solid rgba(255,255,255,.45)}
 :root[data-g="2"] #page{box-shadow:0 20px 56px rgba(30,20,90,.3),0 0 0 1px rgba(255,255,255,.55)}
+
+:root[data-g="2"] :is(#bar,#pp,#tp,#pg,#fit,#dr,#sh,#ts){backdrop-filter:url(#lg) saturate(170%);-webkit-backdrop-filter:url(#lg) saturate(170%);background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 40%,rgba(255,255,255,.07)),rgba(255,255,255,.012);box-shadow:inset 2px 2px 2px -1px rgba(255,255,255,1),inset -2px -2px 2px -1px rgba(255,255,255,.75),inset 0 0 24px rgba(255,255,255,.28),0 12px 30px rgba(20,20,70,.16);text-shadow:0 1px 8px rgba(255,255,255,.7)}
+:root[data-g="2"] :is(#pp,#tp,#dr,#sh){backdrop-filter:url(#lgb) blur(1px) saturate(170%);-webkit-backdrop-filter:url(#lgb) blur(1px) saturate(170%);background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.03) 50%,rgba(255,255,255,.1)),rgba(255,255,255,.03)}
+:root[data-g="2"][data-t=dark] :is(#bar,#pp,#tp,#pg,#fit,#dr,#sh,#ts){background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,0) 40%,rgba(255,255,255,.05)),rgba(255,255,255,.01);box-shadow:inset 2px 2px 2px -1px rgba(255,255,255,.75),inset -2px -2px 2px -1px rgba(255,255,255,.4),inset 0 0 24px rgba(255,255,255,.1),0 12px 30px rgba(0,0,0,.4);text-shadow:0 1px 8px rgba(0,0,0,.7)}
+:root[data-g="2"][data-t=dark] :is(#pp,#tp,#dr,#sh){background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.02) 50%,rgba(255,255,255,.07)),rgba(10,10,24,.14)}
 </style><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png"><meta name="theme-color" content="#6d5efc"></head><body>
 <div id="sp"><div class="lg" data-i="pen"></div><h1>Inkwell</h1><div class="ld"><i></i></div></div>
 <header id="top"><button class="ib" id="mn" data-i="menu" aria-label="Notes"></button><button id="ttl"><span id="dot"></span><span id="ttx"></span></button><span id="st"></span><div id="pg"><button id="pv" data-i="prev" aria-label="Previous page"></button><button id="pl">1 / 1</button><button id="pn" data-i="next" aria-label="Next page"></button></div><button class="ib" id="un" data-i="undo" aria-label="Undo"></button><button class="ib" id="re" data-i="redo" aria-label="Redo"></button></header>
@@ -337,7 +342,7 @@ const d=await pdfjsLib.getDocument({data:new Uint8Array(await blobOf(src).arrayB
 async function togglePv(it){if(!it.pk)return;const s=sl;
 if(it.k!=='file')it.k='file';else{if(it.pk==='pdf'&&!cur.files[it.id+'t']){toast('Making preview…');try{cur.files[it.id+'t']=await pdfThumb(cur.files[it.id])}catch(e){toast('The first PDF preview needs internet');return}}it.k=it.pk;it.w=it.w||(it.pk==='img'?300:260)}
 renderItems();const el=EL.get(it),im=el.querySelector('img');if(im&&!im.complete)await new Promise(r=>{im.onload=im.onerror=r});s.el=el;s.w=el.offsetWidth;s.h=el.offsetHeight;it.x=s.cx-s.w/2;it.y=s.cy-s.h/2;el.style.left=it.x+'px';el.style.top=it.y+'px';showSel();push()}
-function showSel(){if(!sl){sel.style.display='none';return}const s=sl,i=s.it;if(s.t==='fl')sel.dataset.k='fl';else{sel.dataset.k=(i.k==='file'||(i.pk&&i.pk!=='img'))?'file':'img';sel.dataset.pk=i.k;sel.toggleAttribute('data-nopv',!i.pk);$('#pm').textContent=i.k==='file'?'Preview':'As file'}sel.style.cssText=`display:block;left:${s.cx-s.w*s.sc/2}px;top:${s.cy-s.h*s.sc/2}px;width:${s.w*s.sc}px;height:${s.h*s.sc}px;transform:rotate(${s.r}rad)`}
+function showSel(){if(!sl){sel.style.display='none';return}const s=sl,i=s.it;if(s.t==='fl')sel.dataset.k='fl';else{sel.dataset.k=(i.k==='file'||(i.pk&&i.pk!=='img'))?'file':'img';sel.dataset.pk=i.k;sel.toggleAttribute('data-nopv',!i.pk);$('#pm').textContent=i.k==='file'?'Preview':'As file'}sel.style.cssText=`display:block;left:${s.cx-s.w*s.sc/2}px;top:${s.cy-s.h*s.sc/2}px;width:${s.w*s.sc}px;height:${s.h*s.sc}px;transform:rotate(${s.r}rad);--r:${s.r}rad`}
 function drawFl(){const s=sl;lv.style.opacity=1;lx.clearRect(0,0,PW,PH);lx.save();lx.translate(s.cx,s.cy);lx.rotate(s.r);lx.scale(s.sc,s.sc);lx.drawImage(s.c,-s.w/2,-s.h/2,s.w,s.h);lx.restore()}
 function applySel(){const s=sl;if(s.t==='it'){const it=s.it;it.sc=s.sc;it.r=s.r;it.x=s.cx-s.w/2;it.y=s.cy-s.h/2;s.el.style.left=it.x+'px';s.el.style.top=it.y+'px';s.el.style.transform=`rotate(${s.r}rad) scale(${s.sc})`}else drawFl();showSel()}
 function commitFl(){if(!sl||sl.t!=='fl')return;const s=sl;sl=null;showSel();lx.clearRect(0,0,PW,PH);if(!s.dead){cx.save();cx.translate(s.cx,s.cy);cx.rotate(s.r);cx.scale(s.sc,s.sc);cx.drawImage(s.c,-s.w/2,-s.h/2,s.w,s.h);cx.restore()}ink=true;dirty=true;push()}
@@ -426,8 +431,8 @@ $('#fs').oninput=e=>{cfg.fs=+e.target.value;applyCfg();saveCfg()};
 sh.querySelector('[data-a=rp]').onclick=()=>{cfg.pens=JSON.parse(JSON.stringify(DS.pens));cfg.slot=0;saveCfg();toast('Pen slots reset')};
 sh.querySelector('[data-a=da]').onclick=()=>ask('Delete all notes?','Delete all',async()=>{meta.forEach(m=>S.del('n_'+m.id));meta=[];persist();cur=null;await openLatest();toast('All notes deleted')})}
 /* ---------- start ---------- */
-(()=>{const mp=g=>{const c=n=>g?`rgb(0,${n},0)`:`rgb(${n},0,0)`;return'data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="a" x2="${g?0:1}" y2="${g?1:0}"><stop offset="0" stop-color="${c(230)}"/><stop offset=".14" stop-color="${c(128)}"/><stop offset=".86" stop-color="${c(128)}"/><stop offset="1" stop-color="${c(26)}"/></linearGradient></defs><rect width="100" height="100" fill="url(#a)"/></svg>`)};
+(()=>{const mp=g=>{const c=n=>g?`rgb(0,${n},0)`:`rgb(${n},0,0)`;return'data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="a" x2="${g?0:1}" y2="${g?1:0}"><stop offset="0" stop-color="${c(255)}"/><stop offset=".22" stop-color="${c(128)}"/><stop offset=".78" stop-color="${c(128)}"/><stop offset="1" stop-color="${c(0)}"/></linearGradient></defs><rect width="100" height="100" fill="url(#a)"/></svg>`)};
 const f=(id,sc,bl)=>`<filter id="${id}" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feImage href="${mp(0)}" preserveAspectRatio="none" result="r"/><feImage href="${mp(1)}" preserveAspectRatio="none" result="g"/><feComposite in="r" in2="g" operator="arithmetic" k2="1" k3="1" result="m"/><feGaussianBlur in="SourceGraphic" stdDeviation="${bl}" result="b"/><feDisplacementMap in="b" in2="m" scale="${sc}" xChannelSelector="R" yChannelSelector="G"/></filter>`;
-document.body.insertAdjacentHTML('beforeend',`<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>${f('lg',34,1.2)}${f('lgb',12,1.5)}</defs></svg>`)})();
+document.body.insertAdjacentHTML('beforeend',`<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>${f('lg',90,.3)}${f('lgb',40,.5)}</defs></svg>`)})();
 (async()=>{applyCfg();await loadFonts();renderTP();await openLatest();await new Promise(r=>setTimeout(r,900));$('#sp').classList.add('out')})();
 </script><script>if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js')</script></body></html>
