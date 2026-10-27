@@ -165,6 +165,19 @@ input[type=range]{width:100%;accent-color:var(--ac);margin:4px 0 6px}
 :root[data-g="1"] .ni.on,:root[data-g="1"] .slot,:root[data-g="1"] .fc{border:1px solid rgba(255,255,255,.4)}
 :root[data-g="1"] #page{box-shadow:0 20px 56px rgba(30,20,90,.32),0 0 0 1px rgba(255,255,255,.55)}
 :root[data-g="1"] .scr{backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+
+:root[data-g="2"]{--bg:rgba(255,255,255,.16);--sf:rgba(255,255,255,.12);--ln:rgba(255,255,255,.45)}
+:root[data-g="2"][data-t=dark]{--bg:rgba(255,255,255,.07);--sf:rgba(255,255,255,.06);--ln:rgba(255,255,255,.18)}
+:root[data-g="2"] body{background:radial-gradient(rgba(255,255,255,.55) 1.6px,transparent 2.2px) 0 0/24px 24px,radial-gradient(60% 42% at 12% 8%,color-mix(in srgb,var(--ac) 65%,transparent),transparent 72%),radial-gradient(52% 40% at 95% 28%,rgba(255,122,198,.6),transparent 72%),radial-gradient(64% 50% at 25% 98%,rgba(79,209,255,.6),transparent 72%),radial-gradient(40% 30% at 85% 85%,rgba(255,190,90,.45),transparent 70%),#e9ecfb;background-attachment:fixed}
+:root[data-g="2"][data-t=dark] body{background:radial-gradient(rgba(255,255,255,.22) 1.6px,transparent 2.2px) 0 0/24px 24px,radial-gradient(60% 42% at 12% 8%,color-mix(in srgb,var(--ac) 55%,transparent),transparent 72%),radial-gradient(52% 40% at 95% 28%,rgba(220,60,160,.45),transparent 72%),radial-gradient(64% 50% at 25% 98%,rgba(30,140,220,.45),transparent 72%),#090913;background-attachment:fixed}
+:root[data-g="2"] :is(#bar,#pp,#tp,#pg,#fit,#dr,#sh,#ts){border:0;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);backdrop-filter:url(#lg) saturate(150%);-webkit-backdrop-filter:url(#lg) saturate(150%);background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,.04) 45%,rgba(255,255,255,.14)),rgba(255,255,255,.05);box-shadow:inset 1.5px 1.5px 1px -.5px rgba(255,255,255,.95),inset -1.5px -1.5px 1px -.5px rgba(255,255,255,.55),inset 0 0 16px rgba(255,255,255,.22),0 12px 32px rgba(20,20,70,.2)}
+:root[data-g="2"] :is(#pp,#tp,#dr,#sh){backdrop-filter:url(#lgb) blur(10px) saturate(150%);-webkit-backdrop-filter:url(#lgb) blur(10px) saturate(150%);background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,.14) 50%,rgba(255,255,255,.24)),rgba(255,255,255,.1)}
+:root[data-g="2"][data-t=dark] :is(#bar,#pp,#tp,#pg,#fit,#dr,#sh,#ts){background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.02) 45%,rgba(255,255,255,.08)),rgba(255,255,255,.02);box-shadow:inset 1.5px 1.5px 1px -.5px rgba(255,255,255,.6),inset -1.5px -1.5px 1px -.5px rgba(255,255,255,.28),inset 0 0 16px rgba(255,255,255,.08),0 12px 32px rgba(0,0,0,.45)}
+:root[data-g="2"][data-t=dark] :is(#pp,#tp,#dr,#sh){background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.06) 50%,rgba(255,255,255,.12)),rgba(20,20,36,.35)}
+:root[data-g="2"] #ts{color:var(--tx)}
+:root[data-g="2"] :is(.tb.on,.pri,.seg .on){background:linear-gradient(180deg,color-mix(in srgb,var(--ac) 72%,#fff),var(--ac));box-shadow:inset 0 1.5px 0 rgba(255,255,255,.7),0 4px 14px color-mix(in srgb,var(--ac) 50%,transparent)}
+:root[data-g="2"] :is(.slot,.fc,.in,.ni.on){border:1px solid rgba(255,255,255,.45)}
+:root[data-g="2"] #page{box-shadow:0 20px 56px rgba(30,20,90,.3),0 0 0 1px rgba(255,255,255,.55)}
 </style><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png"><meta name="theme-color" content="#6d5efc"></head><body>
 <div id="sp"><div class="lg" data-i="pen"></div><h1>Inkwell</h1><div class="ld"><i></i></div></div>
 <header id="top"><button class="ib" id="mn" data-i="menu" aria-label="Notes"></button><button id="ttl"><span id="dot"></span><span id="ttx"></span></button><span id="st"></span><div id="pg"><button id="pv" data-i="prev" aria-label="Previous page"></button><button id="pl">1 / 1</button><button id="pn" data-i="next" aria-label="Next page"></button></div><button class="ib" id="un" data-i="undo" aria-label="Undo"></button><button class="ib" id="re" data-i="redo" aria-label="Redo"></button></header>
@@ -205,7 +218,7 @@ const cx=cv.getContext('2d'),lx=lv.getContext('2d');cx.scale(K,K);lx.scale(K,K);
 let cur=null,items=[],ink=false,dirty=false,curP='',mode='text',V={x:0,y:0,s:1,r:0},H=[],hi=-1,svt,tmr,tmo;
 const cm=()=>meta.find(m=>m.id===cur.id);
 function toast(t){ts.textContent=t;ts.classList.add('on');clearTimeout(tmo);tmo=setTimeout(()=>ts.classList.remove('on'),2300)}
-function applyCfg(){const t=cfg.theme==='auto'?(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'):cfg.theme;root.dataset.t=t;root.dataset.g=cfg.glass?1:0;root.style.setProperty('--ac',cfg.acc);page.dataset.p=cfg.paper;page.style.setProperty('--lh',Math.round(cfg.fs*1.6)+'px');txt.style.fontSize=cfg.fs+'px';txt.style.fontFamily={sans:'system-ui,sans-serif',serif:'Georgia,"Times New Roman",serif',mono:'ui-monospace,Menlo,monospace'}[cfg.font]}
+function applyCfg(){const t=cfg.theme==='auto'?(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'):cfg.theme;root.dataset.t=t;if(cfg.glass===true)cfg.glass=1;root.dataset.g=cfg.glass||0;root.style.setProperty('--ac',cfg.acc);page.dataset.p=cfg.paper;page.style.setProperty('--lh',Math.round(cfg.fs*1.6)+'px');txt.style.fontSize=cfg.fs+'px';txt.style.fontFamily={sans:'system-ui,sans-serif',serif:'Georgia,"Times New Roman",serif',mono:'ui-monospace,Menlo,monospace'}[cfg.font]}
 /* ---------- view transform ---------- */
 const paint=()=>{page.style.transform=`translate(${V.x}px,${V.y}px) rotate(${V.r}rad) scale(${V.s})`;page.style.setProperty('--z',1/V.s)};
 function toPage(px,py){const r=stage.getBoundingClientRect(),dx=px-r.left-V.x,dy=py-r.top-V.y,c=Math.cos(V.r),n=Math.sin(V.r);return[(dx*c+dy*n)/V.s,(-dx*n+dy*c)/V.s]}
@@ -278,7 +291,7 @@ const plain=h=>E('div',0,(h||'').replace(/<(br|\/div|\/p)[^>]*>/gi,'\n').replace
 let pgs=[],pi=0;
 function stash(){commitFl();const s=snap(),p=pgs[pi];if(p)Object.assign(p,{html:s.html,draw:s.draw,items,H,hi,ink})}
 const u=async x=>{if(!x)return'';x=await x;if(typeof x==='string')return x;return new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(x)})};
-function later(){if(sk||g)svt=setTimeout(later,400);else save()}
+function later(){if(sk||g||(sl&&sl.t==='fl'))svt=setTimeout(later,400);else save()}
 async function save(){if(!cur)return;clearTimeout(svt);const m=cm();if(!m)return;stash();const id=cur.id,files=cur.files;if(!m.custom)m.title=(plain(pgs[0].html).trim().split('\n')[0]||'Untitled').slice(0,40);m.t=Date.now();
 const L=pgs.map(o=>({o,d:o.draw})),out=[];for(const q of L){const str=await u(q.d);if(q.o.draw===q.d&&q.d&&typeof q.d!=='string'&&q.o!==pgs[pi])q.o.draw=str;out.push({html:q.o.html,draw:str,items:q.o.items,bg:q.o.bg,bgi:q.o.bgi})}
 const ok=S.set('n_'+id,JSON.stringify({pages:out,files}));persist();if(!ok)toast('Storage is full');head()}
@@ -398,7 +411,7 @@ function settings(){const y=sh.scrollTop,sg=(k,o)=>`<div class="seg">${o.map(([v
 let kb=0;try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(/^(n_|nb_)/.test(k))kb+=localStorage.getItem(k).length}}catch(e){}
 sheet(`<h3>Settings</h3>
 <div class="row"><span>Theme</span>${sg('theme',[['auto','Auto'],['light','Light'],['dark','Dark']])}</div>
-<div class="row"><span>Style</span>${sg('glass',[[false,'Standard'],[true,'Liquid glass']])}</div>
+<div class="row"><span>Style</span>${sg('glass',[[false,'Standard'],[1,'Frosted'],[2,'Liquid glass']])}</div>
 <div class="row"><span>App color</span><div class="sw">${AC.map(c=>`<button class="c${c===cfg.acc?' on':''}" data-k="acc" data-v="${c}" style="background:${c}"></button>`).join('')}</div></div>
 <div class="row"><span>Autosave</span>${sg('save',[[500,'Fast'],[2000,'2 sec'],[5000,'5 sec']])}</div>
 <div class="row"><span>Paper</span>${sg('paper',[['blank','Blank'],['lined','Lined'],['grid','Grid']])}</div>
@@ -413,5 +426,8 @@ $('#fs').oninput=e=>{cfg.fs=+e.target.value;applyCfg();saveCfg()};
 sh.querySelector('[data-a=rp]').onclick=()=>{cfg.pens=JSON.parse(JSON.stringify(DS.pens));cfg.slot=0;saveCfg();toast('Pen slots reset')};
 sh.querySelector('[data-a=da]').onclick=()=>ask('Delete all notes?','Delete all',async()=>{meta.forEach(m=>S.del('n_'+m.id));meta=[];persist();cur=null;await openLatest();toast('All notes deleted')})}
 /* ---------- start ---------- */
+(()=>{const mp=g=>{const c=n=>g?`rgb(0,${n},0)`:`rgb(${n},0,0)`;return'data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="a" x2="${g?0:1}" y2="${g?1:0}"><stop offset="0" stop-color="${c(230)}"/><stop offset=".14" stop-color="${c(128)}"/><stop offset=".86" stop-color="${c(128)}"/><stop offset="1" stop-color="${c(26)}"/></linearGradient></defs><rect width="100" height="100" fill="url(#a)"/></svg>`)};
+const f=(id,sc,bl)=>`<filter id="${id}" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feImage href="${mp(0)}" preserveAspectRatio="none" result="r"/><feImage href="${mp(1)}" preserveAspectRatio="none" result="g"/><feComposite in="r" in2="g" operator="arithmetic" k2="1" k3="1" result="m"/><feGaussianBlur in="SourceGraphic" stdDeviation="${bl}" result="b"/><feDisplacementMap in="b" in2="m" scale="${sc}" xChannelSelector="R" yChannelSelector="G"/></filter>`;
+document.body.insertAdjacentHTML('beforeend',`<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>${f('lg',34,1.2)}${f('lgb',12,1.5)}</defs></svg>`)})();
 (async()=>{applyCfg();await loadFonts();renderTP();await openLatest();await new Promise(r=>setTimeout(r,900));$('#sp').classList.add('out')})();
 </script><script>if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js')</script></body></html>
